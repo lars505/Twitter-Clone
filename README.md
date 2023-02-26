@@ -1,4 +1,6 @@
-# Twitter-Clone
+# Estos son los archivos iniciales del proyecto
+
+## Este proyecto corresponde al tutorial de youtube: 
 
 #### Para utilizarlo/configurarlo:
 
@@ -9,7 +11,7 @@
 
 2. Crea un ambiente virtual 
 
-```python -m venv socialenv```
+```python -m venv env```
 
 
 3. Instala las dependencias/librerias en requirements.txt
