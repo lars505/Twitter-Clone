@@ -22,6 +22,12 @@
                 {{form.password}}
             </div>
 
+            {% if form.errors %}
+                <div class="alert alert-warning text-danger" role="alert">
+                Username or Passwor not correct!
+                </div>
+            {%endif%}
+
             <button class="twitter-btn">Log in</button>
         </form>
 

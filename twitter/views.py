@@ -45,3 +45,8 @@ def profile(request):
 
 def editar(request):
     return render(request, 'twitter/editar.html')
+
+def eliminar(request, post_id):
+    post = Post.objects.filter(id=post_id)
+    post.delete()
+    return redirect('home')
