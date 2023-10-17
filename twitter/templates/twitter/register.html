@@ -13,21 +13,30 @@
         <form method="post">
             {% csrf_token %}
             <div class="input-wrapper">
-                <label for="user-name-id">First Name</label>
+                <label for="user-name-id">First Name
+                    {{form.first_name}}
+                </label>
+            </div>
+            <div class="input-wrapper">
+                <label for="user-name-id">Username:
+                    {{form.username}}
+                </label>
+            </div>
+            <div class="input-wrapper">
+                <label for="user-name-id">Email
+                    {{form.email}}
+                </label>
+            </div>
 
+            <div class="input-wrapper">
+                <label for="password-id">Password
+                    {{form.password1}}
+                </label>
             </div>
             <div class="input-wrapper">
-                <label for="user-name-id">Username</label>
-            </div>
-            <div class="input-wrapper">
-                <label for="user-name-id">Email</label>
-            </div>
-
-            <div class="input-wrapper">
-                <label for="password-id">Password</label>
-            </div>
-            <div class="input-wrapper">
-                <label for="password-id">Confirm Password</label>
+                <label for="password-id">Confirm Password
+                    {{form.password2}}
+                </label>
             </div>
 
             <button class="twitter-btn">Registrarse</button>

@@ -8,5 +8,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='twitter/login.html'), name='login'),
     path('profile/', views.profile, name='profile'),
-    path('editar/', views.editar, name='editar')
+    path('editar/', views.editar, name='editar'),
+    path('logout/', views.logout, name='logout'),
 ]
