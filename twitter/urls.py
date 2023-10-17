@@ -10,7 +10,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='twitter/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/<str:username>', views.profile, name='profile'),
     path('editar/', views.editar, name='editar'),
     path('eliminar/<int:post_id>', views.eliminar, name='eliminar_post'),
     

@@ -1,4 +1,6 @@
 {% extends 'twitter/layout.html' %}
+{%load humanize %}
+
 {% block content %}
 <div id="main" class="container-fluid d-flex">
     <!-- Barra Izquierda -->
@@ -6,14 +8,14 @@
         <div class="">
             <div class="card " style="width: 18rem; text-align:center;border-radius: 20px;">
                 <img class="card-img-top rounded-circle"
-                    style="width:60%; position: relative;left: 62px;padding-top: 20px;" src="../../static/img/tony.jpg"
+                    style="width:60%; position: relative;left: 62px;padding-top: 20px;" src="{{user.profile.image.url}}"
                     alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold">Tony</h5>
-                    <h6 class="card-title font-weight-bold">@Tony</h6>
+                    <h5 class="card-title font-weight-bold">{{ user.first_name }}</h5>
+                    <h6 class="card-title font-weight-bold">@{{ user.username }}</h6>
 
 
-                    <p class="card-text">Tony</p>
+                    <p class="card-text">{{ user.profile.bio }}</p>
                     <h6 class="card-title font-weight-bold">
                         100 Followers
                         100 Following
@@ -33,15 +35,16 @@
 
 
         <!-- Tweets -->
+        {% for post in posts %}
         <div id="tweetCards">
             <!-- FOR LOOP HERE -->
             <div class="tweet-wrap" style="border-radius:20px">
                 <div class="tweet-header">
-                    <img src="../../static/img/tony.jpg" alt="" class="avator">
+                    <img src="{{post.user.profile.image.url}}" alt="" class="avator">
                     <div class="tweet-header-info">
-                        Tony <span>@Tony</span><span>3 hours
+                        {{post.user.first_name}} <span>@{{post.user.username}}</span><span>{{post.timestamp |naturaltime}}
                         </span>
-                        <p>test</p>
+                        <p>{{post.content}}</p>
                     </div>
                 </div>
                 <div class="tweet-info-counts">
@@ -99,6 +102,8 @@
             <!-- FOR LOOP HERE -->
 
         </div>
+
+        {% endfor%}
         <!-- EndTweets -->
 
 

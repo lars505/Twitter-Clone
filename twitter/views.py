@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Post, Profile
 
-from .forms import UserRegisterForm, PostForm
+from django.contrib.auth.models import User
 
-from django.contrib.auth import logout
+from .forms import UserRegisterForm, PostForm 
+
 
 
 def home(request):
@@ -39,9 +40,18 @@ def register(request):
     return render(request, 'twitter/register.html', context)
 
 
-def profile(request):
+def profile(request, username):
 
-    return render(request, 'twitter/profile.html')
+    user = User.objects.get(username=username)
+    post = user.posts.all()
+
+    context = {
+        'user' : user,
+        'posts': post
+    }
+    
+    print(context)
+    return render(request, 'twitter/profile.html', context)
 
 def editar(request):
     return render(request, 'twitter/editar.html')
