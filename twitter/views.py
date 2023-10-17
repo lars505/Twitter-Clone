@@ -29,14 +29,9 @@ def register(request):
     return render(request, 'twitter/register.html', context)
 
 
-
 def profile(request):
 
     return render(request, 'twitter/profile.html')
 
 def editar(request):
     return render(request, 'twitter/editar.html')
-
-def logout(request):
-    # logout(request)
-    return redirect('login')
