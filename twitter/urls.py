@@ -13,5 +13,6 @@ urlpatterns = [
     path('profile/<str:username>', views.profile, name='profile'),
     path('editar/', views.editar_perfil, name='editar_perfil'),
     path('eliminar/<int:post_id>', views.eliminar, name='eliminar_post'),
+    path('follow/<str:username>', views.follow, name='follow'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

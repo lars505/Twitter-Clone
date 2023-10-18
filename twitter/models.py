@@ -10,6 +10,18 @@ class Profile(models.Model):
     def __str__(self):
         return f'Perfil de {self.user.username}'
     
+    def following(self):
+        user_id = Relationships.objects.filter(from_user=self.user)\
+                                       .values_list('to_user_id', flat=True) 
+
+        return User.objects.filter(id__in=user_id)        
+    
+    def followers(self):
+        user_id = Relationships.objects.filter(to_user=self.user)\
+                                       .values_list('from_user_id', flat=True) 
+
+        return User.objects.filter(id__in=user_id)        
+    
 
 class Post(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
@@ -22,3 +34,12 @@ class Post(models.Model):
 
     def __str__(self):
         return  self.content
+
+
+class Relationships(models.Model):
+    from_user = models.ForeignKey(User, related_name="relationsships", on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, related_name="related_to", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.from_user} to {self.to_user}'
+    
