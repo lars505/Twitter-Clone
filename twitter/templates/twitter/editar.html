@@ -8,22 +8,31 @@
             <div class="d-flex">
                 <div class="col-xs">
                     <!-- Image form -->
-                    <img src="../../static/img/tony.jpg" alt="" class="avator">
+                    <img src="{{request.user.profile.image.url}}" alt="" class="avator">
                     <!-- Formulario -->
                 </div>
 
                 <!-- Formulario -->
-                <form class="col pr-0" method="post" enctype="multipart/form-data">
+                <form class="col pr-0" method="post" enctype="multipart/form-data" action="">
+                    {% csrf_token %}
                     <div class="input-wrapper">
-                        <label>Nombre</label>
+                        <label>Nombre:
+                            {{user_form.first_name}}
+                        </label>
                     </div>
                     <div class="input-wrapper">
                         <label for="user-name-id">Username</label>
+                        {{user_form.username}}
                     </div>
                     <div class="input-wrapper">
-                        <label>Bio</label>
+                        <label>Bio:
+                            {{profile_form.bio}}	
+                        </label>
                     </div>
                     <div class="input-wrapper">
+                        <label>Imagen:
+                            {{profile_form.image}}
+                        </label>
                     </div>
 
                     <button class="twitter-btn">Actualizar</button>

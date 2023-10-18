@@ -19,13 +19,13 @@
                         100 Followers
                         100 Following
                     </h6>
-                    <a href="#" class="btn  text-white rounded-pill">Mi perfil</a>
+                    <a href="{% url 'profile' request.user.username %}" class="btn  text-white rounded-pill">Mi perfil</a>
                 </div>
 
             </div>
-            <button id="addATweetLeft" onclick="addTweet()" type="button"
+            <a href="{% url 'editar_perfil' %}" id="addATweetLeft" onclick="addTweet()" type="button"
                 style="border-radius: 30px; font-size: 1.1rem; font-weight:bold;"
-                class="btn btn-lg btn-block mt-4 text-white ">Editar mi perfil</button>
+                class="btn btn-lg btn-block mt-4 text-white ">Editar mi perfil</a>
         </div>
     </div>
     <!-- End Barra Izquierda -->
