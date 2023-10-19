@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView
+from django.views.defaults import page_not_found
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,5 +16,5 @@ urlpatterns = [
     path('eliminar/<int:post_id>', views.eliminar, name='eliminar_post'),
     path('follow/<str:username>', views.follow, name='follow'),
     path('unfollow/<str:username>', views.unfollow, name='unfollow'),
-    
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

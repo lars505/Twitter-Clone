@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Post, Relationships
 
 from django.contrib.auth.models import User
 
 from .forms import UserRegisterForm, PostForm , ProfileUpdateForm, UserUpdateForm
 
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -56,6 +59,7 @@ def profile(request, username):
     print(context)
     return render(request, 'twitter/profile.html', context)
 
+@login_required
 def editar_perfil(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
@@ -74,6 +78,7 @@ def editar_perfil(request):
     }
     return render(request, 'twitter/editar.html', context)
 
+@login_required
 def follow(request, username):
 
     current_user = request.user
@@ -83,6 +88,7 @@ def follow(request, username):
     rel.save()
     return redirect('home')
 
+@login_required
 def unfollow(request, username):
     current_user = request.user
     to_user = User.objects.get(username=username) 
@@ -90,6 +96,4 @@ def unfollow(request, username):
     rel = Relationships.objects.filter(from_user=current_user, to_user=to_user_id)  
     rel.delete()
     return redirect('home')
-
-
 
