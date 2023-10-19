@@ -20,9 +20,15 @@
                         {{user.profile.followers.count}} Followers
                         {{user.profile.following.count}} Following
                     </h6>
-                    {% if user != request.user %}
-                        <a href="{% url 'follow' user %}" class="btn  text-white rounded-pill">Seguir</a>
-                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        {% if user.username != request.user.username %}
+                            {% if user not in request.user.profile.following %}
+                                <a href="{% url 'follow' user %}" class="btn  text-white rounded-pill">Seguir</a>
+                            {% else %}
+                                <a href="{% url 'unfollow' user %}" class="btn btn-danger  text-white rounded-pill">Dejar de</a>
+                            {% endif %}
+                        {% endif %}
+                    {%endif%}
                 </div>
 
             </div>
